@@ -1,0 +1,21 @@
+/* src/components/GameLevelInfo.css */
+.game-level-info {
+  text-align: center;
+}
+
+.game-level-info h1 {
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+.game-level-info p {
+  font-size: 1.2em;
+  margin: 0.5em 0;
+}
+
+.game-level-info button {
+  padding: 0.5em 2em;
+  font-size: 1em;
+  margin-top: 1em;
+}
+

@@ -1,0 +1,13 @@
+/* src/assets/Header.css */
+
+.hover\:text-black:hover {
+  color: black;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+header {
+  background-color: #EDFFDE;
+}

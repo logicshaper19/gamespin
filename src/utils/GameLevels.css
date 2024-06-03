@@ -1,0 +1,28 @@
+/* src/utils/GameLevels.css */
+.game {
+  text-align: center;
+  padding: 20px;
+}
+
+.game h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.game p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.game button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.game button:hover {
+  background-color: #0056b3;
+}

@@ -1,0 +1,23 @@
+/* src/components/GameLevels.css */
+.game-levels {
+  text-align: center;
+}
+
+.game-levels ul {
+  list-style: none;
+  padding: 0;
+}
+
+.game-levels ul li {
+  margin: 10px 0;
+}
+
+.game-levels ul li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+.game-levels ul li a:hover {
+  color: #ff0000;
+}

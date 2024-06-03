@@ -1,0 +1,31 @@
+/* src/components/Game.css */
+.game {
+  text-align: center;
+  color: white;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.game h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.game p {
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+}
+
+.game button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 5px;
+}
