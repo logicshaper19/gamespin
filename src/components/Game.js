@@ -1,42 +1,56 @@
-// src/components/Game.js
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import gameLevels from '../utils/GameLevels';
-import walletUtils from '../utils/wallet';
-import winSound from '../assets/sounds/Win.mp4';
-import loseSound from '../assets/sounds/Lose.mp4';
-
-const { connectWallet, playGame } = walletUtils;
+import winSound from '../assets/sounds/win.mp3';
+import loseSound from '../assets/sounds/lose.mp3';
 
 const Game = () => {
   const { level } = useParams();
-  const [roundsLeft, setRoundsLeft] = useState(3);
+  const [attemptsLeft, setAttemptsLeft] = useState(gameLevels[level]?.rounds || 3);
   const [message, setMessage] = useState('');
   const [walletAddress, setWalletAddress] = useState(null);
 
   useEffect(() => {
-    const connect = async () => {
-      const address = await connectWallet();
-      setWalletAddress(address);
+    const connectWallet = async () => {
+      if (window.solana && window.solana.isPhantom) {
+        try {
+          const response = await window.solana.connect();
+          console.log('Wallet connected:', response.publicKey.toString());
+          setWalletAddress(response.publicKey.toString());
+        } catch (err) {
+          console.error('Wallet connection failed:', err);
+        }
+      } else {
+        alert('Please install the Phantom wallet extension');
+      }
     };
-    connect();
+
+    connectWallet();
   }, []);
 
   const handlePlay = () => {
-    if (roundsLeft > 0) {
+    const playGame = (level) => {
+      const game = gameLevels[level];
+      const chambers = 6;
+      const bulletPosition = Math.floor(Math.random() * chambers);
+
+      if (bulletPosition < game.bullets) {
+        return 'lose';
+      } else {
+        return 'win';
+      }
+    };
+
+    if (attemptsLeft > 0) {
       const result = playGame(level);
       if (result === 'win') {
-        setRoundsLeft(roundsLeft - 1);
-        if (roundsLeft === 1) {
-          setMessage(`Congratulations! You've won ${gameLevels[level].payout} SOL!`);
-          new Audio(winSound).play();
-        } else {
-          setMessage('You survived this round, keep going!');
-        }
+        new Audio(winSound).play();
+        setMessage(`Congratulations! You survived. ${attemptsLeft - 1} rounds left.`);
+        setAttemptsLeft(attemptsLeft - 1);
       } else {
-        setMessage('You lost! Better luck next time.');
         new Audio(loseSound).play();
-        setRoundsLeft(0);
+        setMessage('You lost! Game over.');
+        setAttemptsLeft(0);
       }
     }
   };
@@ -46,7 +60,7 @@ const Game = () => {
       <h1>{gameLevels[level]?.name || 'Unknown'} Level</h1>
       <p>{gameLevels[level]?.message || 'No description available.'}</p>
       <p>Price: {gameLevels[level]?.price} SOL</p>
-      <p>Rounds Left: {roundsLeft}</p>
+      <p>Rounds Left: {attemptsLeft}</p>
       <button onClick={handlePlay}>Let's Play</button>
       <p>{message}</p>
     </div>
