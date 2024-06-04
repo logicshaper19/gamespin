@@ -1,29 +1,26 @@
-// src/components/GameLevel.js
+// src/components/GameLevelInfo.js
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
+import gameLevels from '../utils/GameLevels';
+import './GameLevelInfo.css';
 
-const GameLevel = ({ level }) => {
-  if (!level) return <p>Invalid level</p>;
+const GameLevelInfo = ({ match }) => {
+  const level = match.params.level;
+  const history = useHistory();
+
+  const handlePlay = () => {
+    history.push(`/game/${level}`);
+  };
 
   return (
-    <div className="game-level">
-      <h1>{level.name} Level</h1>
-      <p>{level.message}</p>
-      <p>Price: {level.price} SOL</p>
-      <p>Attempts: {level.attempts}</p>
-      <p>Payout Multiplier: {level.payoutMultiplier}</p>
+    <div className="game-level-info">
+      <h1>{gameLevels[level]?.name || 'Unknown'} Level</h1>
+      <p>{gameLevels[level]?.message || 'No description available.'}</p>
+      <p>Price: {gameLevels[level]?.price} SOL</p>
+      <p>Payout: {gameLevels[level]?.payout} SOL</p>
+      <button onClick={handlePlay}>Let's Play</button>
     </div>
   );
 };
 
-GameLevel.propTypes = {
-  level: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    attempts: PropTypes.number.isRequired,
-    payoutMultiplier: PropTypes.number.isRequired,
-    message: PropTypes.string.isRequired,
-  }).isRequired,
-};
-
-export default GameLevel;
+export default GameLevelInfo;

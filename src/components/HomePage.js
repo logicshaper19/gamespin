@@ -13,10 +13,10 @@ const HomePage = () => {
         <h2 className="subtitle">A Degenerate Gambler Who Loves Losing It All on Russian Roulette</h2>
         <p className="description">What's your Degen level:</p>
         <div className="levels">
-          <div className="level"><Link to="/game/beginner">Beginner</Link></div>
-          <div className="level"><Link to="/game/intermediate">Intermediate</Link></div>
-          <div className="level"><Link to="/game/advanced">Advanced</Link></div>
-          <div className="level"><Link to="/game/expert">Expert</Link></div>
+          <div className="level"><Link to="/game/beginner">Beginner: 0.1 sol to play and win 1 Sol</Link></div>
+          <div className="level"><Link to="/game/intermediate">Intermediate: 0.25 play to enter and win 2.5 Sol</Link></div>
+          <div className="level"><Link to="/game/advanced">Advanced: 0.5 sol to play and win 5 Sol</Link></div>
+          <div className="level"><Link to="/game/expert">Expert: 1 sol to play and win 10 Sol </Link></div>
         </div>
       </header>
     </div>

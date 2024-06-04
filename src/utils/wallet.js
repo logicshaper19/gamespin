@@ -17,10 +17,10 @@ export const connectWallet = async () => {
 
 export const playGame = (level) => {
   const levels = {
-    beginner: { price: 0.1, bullets: 1, payoutMultiplier: 2 },
-    intermediate: { price: 0.2, bullets: 2, payoutMultiplier: 3 },
-    advanced: { price: 0.3, bullets: 3, payoutMultiplier: 4 },
-    expert: { price: 0.4, bullets: 4, payoutMultiplier: 5 },
+    beginner: { price: 0.1, bullets: 1, payout: 1 },
+    intermediate: { price: 0.25, bullets: 2, payout: 2.5 },
+    advanced: { price: 0.5, bullets: 3, payout: 5 },
+    expert: { price: 1, bullets: 4, payout: 10 },
   };
 
   const game = levels[level];
